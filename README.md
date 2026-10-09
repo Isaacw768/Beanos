@@ -12,5 +12,6 @@
     a. If this doesn't work, right-click the file and select "Open with" and select your browser
 
 **Verifying the Vertical Slice:**
-1. 
-2. 
+1. **Action & Input:** Enter `testemail@gmail.com` into the email field, and ‘testpassword’ and click the “Register” button. 
+2. **Check Immediate Feedback:** Ensure the UI updates dynamically to show `"User saved to database successfully!"`. 
+3. **Verify Persistence:** Refresh the browser (`Command/Control + r`). Verify that `"Test Entry"` is still displayed after the reload.
