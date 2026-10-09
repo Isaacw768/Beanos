@@ -3,7 +3,7 @@
 
 **ERD:** ![ERD](images/erd.png)
 
-**Tech Stack:** HTML/CSS/JavaScript, Node.Js, Supabase. This fits our team because our product is going to be web-based, and our group is most comfortable with the HTML/JS platform. 
+**Tech Stack:** HTML/CSS/JavaScript, Node.Js, Supabase. This fits our team because our product is going to be web-based, and our group is most comfortable with the HTML/JS platform. Supabase is a free and easy to use tool so we went with that over other options.
 
 **How to Get It Running:**
 1. In this GitHub repository, navigate to the green "Code" button
@@ -14,4 +14,4 @@
 **Verifying the Vertical Slice:**
 1. **Action & Input:** Enter `testemail@gmail.com` into the email field, and ‘testpassword’ and click the “Register” button. 
 2. **Check Immediate Feedback:** Ensure the UI updates dynamically to show `"User saved to database successfully!"`. 
-3. **Verify Persistence:** Refresh the browser (`Command/Control + r`). Verify that `"Test Entry"` is still displayed after the reload.
+3. **Verify Persistence:** Refresh the browser (`Command/Control + r`). Verify that `"testemail@gmail.com"` is still displayed after the reload.
