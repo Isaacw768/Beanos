@@ -2,16 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beanos</title>
+    <title>Supabase Sign Up</title>
+    <!-- Load Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Beanos</h1>
 
+<h2>Sign Up (Database Table)</h2>
+    <form id="signup-form">
+        <div>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" required>
+        </div>
+        <br>
+        <button type="submit">Register</button>
+    </form>
 
-    <script src="script.js">
-        
+    <p id="status-message"></p>
+
+    <script>
+        const SUPABASE_URL = 'https://bzqepyhnvvrwzafydeqp.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_VbXs3R4Y6H4bVS63j2KkoA_g0trAUp5';
+
+        const testDatabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const form = document.getElementById('signup-form');
+        const statusMessage = document.getElementById('status-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent page refresh
+
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+
+            // Insert into your custom table (e.g., 'users')
+            const { data, error } = await testDatabase
+                .from('SIGN_IN') 
+                .insert([
+                    { email: emailInput, password_hash: passwordInput }
+                ]);
+
+            if (error) {
+                statusMessage.textContent = `Error: ${error.message}`;
+                statusMessage.style.color = 'red';
+                console.error("Insert error:", error);
+            } else {
+                statusMessage.textContent = 'User saved to database successfully!';
+                statusMessage.style.color = 'green';
+                console.log("Inserted data:", data);
+                form.reset();
+            }
+        });
     </script>
 </body>
 </html>
