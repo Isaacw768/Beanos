@@ -27,7 +27,7 @@
     <p id="status-message"></p>
 
     <!-- Recent sign-ups section -->
-    <h3>recent sign-ups because privacy doesn't matter</h3>
+    <h3>Recent sign-ups because privacy doesn't matter lol</h3>
     <ul id="recent-list">
         <!-- Emails will be injected here -->
     </ul>
@@ -82,7 +82,7 @@
             const { data, error } = await testDatabase
                 .from('SIGN_IN')
                 .insert([
-                    { email: emailInput, password: passwordInput }
+                    { email: emailInput, password_hash: passwordInput }
                 ]);
 
             if (error) {
