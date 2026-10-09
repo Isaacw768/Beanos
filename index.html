@@ -23,8 +23,14 @@
         <br>
         <button type="submit">Register</button>
     </form>
-
+    <br>
     <p id="status-message"></p>
+
+    <!-- Recent sign-ups section -->
+    <h3>recent sign-ups because privacy doesn't matter</h3>
+    <ul id="recent-list">
+        <!-- Emails will be injected here -->
+    </ul>
 
     <script>
         const SUPABASE_URL = 'https://bzqepyhnvvrwzafydeqp.supabase.co';
@@ -34,18 +40,49 @@
 
         const form = document.getElementById('signup-form');
         const statusMessage = document.getElementById('status-message');
+        const recentList = document.getElementById('recent-list');
 
+        // Function to fetch and display the last 3 sign-ups
+        async function loadRecentSignUps() {
+            const { data, error } = await testDatabase
+                .from('SIGN_IN') // Change to your actual table name if different
+                .select('email')
+                .order('user_id', { ascending: false }) // Sort by newest (assuming 'id' auto-increments)
+                .limit(3);
+
+            if (error) {
+                console.error("Error fetching recent signups:", error);
+                return;
+            }
+
+            // Clear the list before repopulating
+            recentList.innerHTML = '';
+
+            // Loop through the data and add each email to the list
+            data.forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = user.email;
+                recentList.appendChild(li);
+            });
+        }
+
+        // Load the recent sign-ups when the page first loads
+        loadRecentSignUps();
+
+        // Handle form submission
         form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent page refresh
+            e.preventDefault();
 
             const emailInput = document.getElementById('email').value;
             const passwordInput = document.getElementById('password').value;
 
-            // Insert into your custom table (e.g., 'users')
+            statusMessage.textContent = "Submitting...";
+            statusMessage.style.color = "blue";
+
             const { data, error } = await testDatabase
-                .from('SIGN_IN') 
+                .from('SIGN_IN')
                 .insert([
-                    { email: emailInput, password_hash: passwordInput }
+                    { email: emailInput, password: passwordInput }
                 ]);
 
             if (error) {
@@ -55,8 +92,10 @@
             } else {
                 statusMessage.textContent = 'User saved to database successfully!';
                 statusMessage.style.color = 'green';
-                console.log("Inserted data:", data);
                 form.reset();
+                
+                // Refresh the recent sign-ups list immediately
+                loadRecentSignUps();
             }
         });
     </script>
