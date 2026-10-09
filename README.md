@@ -1,5 +1,5 @@
 # Beanos
-**App Summary:** The problem we are trying to solve is that men are struggling to get a girlfriend. This is because men don’t feel comfortable talking to women even in low pressure environments, struggle to plan fun dates, and act awkward on those dates. This prevents the relationship from growing into a second date and onward. This creates a negative-feedback loop where even if a guy talks himself into approaching a girl, he has built-up anxiety that prevents him from getting anything other than a rejection, further feeding into his anxiety and reluctance to try again. 
+**App Summary:** The problem we are trying to solve is that men are struggling to get a girlfriend. This is because men don’t feel comfortable talking to women, struggle to plan fun dates, and act awkward on those dates. This prevents the relationship from growing into a second date and onward. This creates a negative-feedback loop where even if a guy talks himself into approaching a girl, he has built-up anxiety that prevents him from getting anything other than a rejection, further feeding into his anxiety and reluctance to try again. The app has a lesson format to teach these skills that men lack, leading to men finding a girlfriend.
 
 **ERD:** ![ERD](images/erd.png)
 
@@ -14,4 +14,4 @@
 **Verifying the Vertical Slice:**
 1. **Action & Input:** Enter `testemail@gmail.com` into the email field, and ‘testpassword’ and click the “Register” button. 
 2. **Check Immediate Feedback:** Ensure the UI updates dynamically to show `"User saved to database successfully!"`. 
-3. **Verify Persistence:** Refresh the browser (`Command/Control + r`). Verify that `"testemail@gmail.com"` is still displayed after the reload.
+3. **Verify Persistence:** Refresh the browser (`Command/Control + r`). Verify that `"testemail@gmai.com"` is still displayed after the reload.
